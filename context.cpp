@@ -1,6 +1,7 @@
 #include "context.hpp"
 #include <iostream>
-#include <unistd.h>
+#include <io.h>
+#include <direct.h>
 #include "prelexer.hpp"
 using std::cerr; using std::endl;
 
@@ -11,7 +12,7 @@ namespace Sass {
   {
     const size_t wd_len = 1024;
     char wd[wd_len];
-    include_paths.push_back(getcwd(wd, wd_len));
+    include_paths.push_back(_getcwd(wd, wd_len));
     if (*include_paths.back().rbegin() != '/') include_paths.back() += '/';
 
     if (paths_str) {
