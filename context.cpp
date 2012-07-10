@@ -17,7 +17,13 @@ namespace Sass {
 
     if (paths_str) {
       const char* beg = paths_str;
-      const char* end = Prelexer::find_first<':'>(beg);
+      const char* end = Prelexer::find_first<
+#ifdef WIN32
+          ';'
+#else
+          ':'
+#endif
+      >(beg);
 
       while (end) {
         string path(beg, end - beg);

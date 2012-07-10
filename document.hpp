@@ -1,4 +1,9 @@
 #include <map>
+#include <memory>
+
+#ifndef SASS_SOURCE_PROVIDER_INCLUDED
+#include "source_provider.hpp"
+#endif
 
 #ifndef SASS_PRELEXER_INCLUDED
 #include "prelexer.hpp"
@@ -26,6 +31,7 @@ namespace Sass {
   struct Document {
     enum CSS_Style { nested, expanded, compact, compressed, echo };
     
+    shared_ptr<SourceProvider> source_provider;
     string path;
     char* source;
     const char* position;
@@ -48,6 +54,7 @@ namespace Sass {
     static Document make_from_file(Context& ctx, string path);
     static Document make_from_source_chars(Context& ctx, char* src, string path = "", bool own_source = false);
     static Document make_from_token(Context& ctx, Token t, string path = "", size_t line_number = 1);
+    static Document make_from_source_provider(Context& ctx, shared_ptr<SourceProvider> source_context);
 
     template <prelexer mx>
     const char* peek(const char* start = 0)

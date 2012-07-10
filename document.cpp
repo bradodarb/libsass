@@ -14,6 +14,7 @@ namespace Sass {
   Document::Document(const Document& doc)
   : path(doc.path),
     source(doc.source),
+    source_provider(doc.source_provider),
     position(doc.position),
     end(doc.end),
     line(doc.line),
@@ -106,9 +107,24 @@ namespace Sass {
 
     return doc;
   }
-  
+
+  Document Document::make_from_source_provider(Context& ctx, shared_ptr<SourceProvider> source_provider)
+  {
+    auto path = source_provider->get_path();
+    auto source = source_provider->get_content();
+
+    auto len = source.length();
+    auto src = new char[len+1];
+    source._Copy_s(src, len, len);
+    src[len] = '\0';
+    auto doc = Document::make_from_source_chars(ctx, src, path, true);
+    doc.source_provider = source_provider;
+
+    return doc;
+  }
+
   void Document::throw_syntax_error(string message, size_t ln)
-  { throw Error(Error::syntax, path, ln ? ln : line, message); }
+  { throw Error(Error::syntax, path, ln ? ln : line, message + "\nSource: " + source); }
   
   void Document::throw_read_error(string message, size_t ln)
   { throw Error(Error::read, path, ln ? ln : line, message); }
