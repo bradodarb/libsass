@@ -45,7 +45,7 @@ namespace Sass {
     map<pair<string, size_t>, Function> function_env;
     multimap<Node, Node> extensions;
     vector<pair<Node, Node> > pending_extensions;
-    vector<char*> source_refs; // all the source c-strings
+    vector<const char*> source_refs; // all the source c-strings
     vector<string> include_paths;
     Node_Factory new_Node;
     size_t ref_count;

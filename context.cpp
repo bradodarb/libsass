@@ -52,7 +52,7 @@ namespace Sass {
     function_env(map<pair<string, size_t>, Function>()),
     extensions(multimap<Node, Node>()),
     pending_extensions(vector<pair<Node, Node> >()),
-    source_refs(vector<char*>()),
+    source_refs(vector<const char*>()),
     include_paths(vector<string>()),
     new_Node(Node_Factory()),
     ref_count(0),

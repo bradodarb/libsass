@@ -77,7 +77,7 @@ namespace Sass {
     return doc;
   }
 
-  Document Document::make_from_source_chars(Context& ctx, char* src, string path, bool own_source)
+  Document Document::make_from_source_chars(Context& ctx, const char* src, string path, bool own_source)
   {
     Document doc(ctx);
     doc.path = path;

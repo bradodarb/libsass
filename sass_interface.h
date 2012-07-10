@@ -9,31 +9,31 @@ extern "C" {
 
 struct sass_options {
   int output_style;
-  char* include_paths;
+  const char* include_paths;
 };
 
 struct sass_context {
-  char* source_string;
-  char* output_string;
+  const char* source_string;
+  const char* output_string;
   struct sass_options options;
   int error_status;
-  char* error_message;
+  const char* error_message;
 };
 
 struct sass_file_context {
-  char* input_path;
-  char* output_string;
+  const char* input_path;
+  const char* output_string;
   struct sass_options options;
   int error_status;
-  char* error_message;
+  const char* error_message;
 };
 
 struct sass_folder_context {
-  char* search_path;
-  char* output_path;
+  const char* search_path;
+  const char* output_path;
   struct sass_options options;
   int error_status;
-  char* error_message;
+  const char* error_message;
 };
 
 struct sass_context*        sass_new_context        (void);

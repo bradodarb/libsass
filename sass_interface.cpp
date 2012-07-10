@@ -17,8 +17,8 @@ extern "C" {
   
   void sass_free_context(sass_context* ctx)
   { 
-    if (ctx->output_string) free(ctx->output_string);
-    if (ctx->error_message) free(ctx->error_message);
+    if (ctx->output_string) free((void*)ctx->output_string);
+    if (ctx->error_message) free((void*)ctx->error_message);
 
     free(ctx);
   }
@@ -28,8 +28,8 @@ extern "C" {
   
   void sass_free_file_context(sass_file_context* ctx)
   { 
-    if (ctx->output_string) free(ctx->output_string);
-    if (ctx->error_message) free(ctx->error_message);
+    if (ctx->output_string) free((void*)ctx->output_string);
+    if (ctx->error_message) free((void*)ctx->error_message);
 
     free(ctx);
   }
