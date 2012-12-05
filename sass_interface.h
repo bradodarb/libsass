@@ -1,3 +1,5 @@
+#define SASS_INTERFACE
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -9,11 +11,13 @@ extern "C" {
 
 struct sass_options {
   int output_style;
+  int source_comments; // really want a bool, but C doesn't have them
   char* include_paths;
+  char* image_path;
 };
 
 struct sass_context {
-  char* source_string;
+  const char* source_string;
   char* output_string;
   struct sass_options options;
   int error_status;
